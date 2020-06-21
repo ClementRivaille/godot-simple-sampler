@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Ab4.ogg-42f6664626df8d71fe979160df62b195.oggstr"
+
+[deps]
+
+source_file="res://samples/synth/Ab4.ogg"
+dest_files=[ "res://.import/Ab4.ogg-42f6664626df8d71fe979160df62b195.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

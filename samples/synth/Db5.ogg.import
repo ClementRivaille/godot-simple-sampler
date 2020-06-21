@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Db5.ogg-e380948764980b4c1a2067a2618331c5.oggstr"
+
+[deps]
+
+source_file="res://samples/synth/Db5.ogg"
+dest_files=[ "res://.import/Db5.ogg-e380948764980b4c1a2067a2618331c5.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

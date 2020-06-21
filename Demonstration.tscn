@@ -1,0 +1,112 @@
+[gd_scene load_steps=15 format=2]
+
+[ext_resource path="res://samples/synth/G#4.tres" type="Resource" id=1]
+[ext_resource path="res://addons/SimpleSampler/sampler.gd" type="Script" id=2]
+[ext_resource path="res://samples/synth/E5.tres" type="Resource" id=3]
+[ext_resource path="res://samples/synth/E4.tres" type="Resource" id=4]
+[ext_resource path="res://samples/synth/B4.tres" type="Resource" id=5]
+[ext_resource path="res://samples/synth/C#5.tres" type="Resource" id=6]
+[ext_resource path="res://addons/SimpleSampler/multisampler.gd" type="Script" id=7]
+[ext_resource path="res://demo/Oswald-Medium.ttf" type="DynamicFontData" id=8]
+[ext_resource path="res://demo/Samplers.gd" type="Script" id=9]
+[ext_resource path="res://addons/SimpleSampler/sample_resource.gd" type="Script" id=10]
+[ext_resource path="res://samples/sawtooth_A440.ogg" type="AudioStream" id=11]
+
+[sub_resource type="Resource" id=1]
+script = ExtResource( 10 )
+stream = ExtResource( 11 )
+tone = "A"
+octave = 4
+
+[sub_resource type="DynamicFont" id=2]
+size = 40
+font_data = ExtResource( 8 )
+
+[sub_resource type="DynamicFont" id=3]
+size = 25
+extra_spacing_top = 10
+extra_spacing_bottom = 10
+font_data = ExtResource( 8 )
+
+[node name="Control" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Samplers" type="Node2D" parent="."]
+script = ExtResource( 9 )
+
+[node name="Sampler" type="AudioStreamPlayer" parent="Samplers"]
+script = ExtResource( 2 )
+samples = [ ExtResource( 5 ), ExtResource( 6 ), ExtResource( 4 ), ExtResource( 3 ), ExtResource( 1 ) ]
+
+[node name="Multisampler" type="AudioStreamPlayer" parent="Samplers"]
+script = ExtResource( 7 )
+samples = [ ExtResource( 5 ), ExtResource( 6 ), ExtResource( 4 ), ExtResource( 3 ), ExtResource( 1 ) ]
+max_notes = 4
+
+[node name="Multisampler2" type="AudioStreamPlayer" parent="Samplers"]
+script = ExtResource( 7 )
+samples = [ ExtResource( 5 ), ExtResource( 6 ), ExtResource( 4 ), ExtResource( 3 ), ExtResource( 1 ) ]
+max_notes = 4
+
+[node name="EnvSampler" type="AudioStreamPlayer" parent="Samplers"]
+script = ExtResource( 2 )
+samples = [ SubResource( 1 ) ]
+attack = 0.3
+release = 1.0
+
+[node name="Label" type="Label" parent="."]
+anchor_right = 1.0
+custom_fonts/font = SubResource( 2 )
+text = "Welcome to the Simpler Sampler showcase!"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+anchor_left = 0.1
+anchor_top = 0.2
+anchor_right = 0.9
+anchor_bottom = 1.0
+custom_constants/separation = 30
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button1" type="Button" parent="VBoxContainer"]
+margin_top = 73.0
+margin_right = 819.0
+margin_bottom = 134.0
+custom_fonts/font = SubResource( 3 )
+text = "Play a single note"
+
+[node name="Button2" type="Button" parent="VBoxContainer"]
+margin_top = 164.0
+margin_right = 819.0
+margin_bottom = 225.0
+custom_fonts/font = SubResource( 3 )
+text = "Play a chord"
+
+[node name="Button3" type="Button" parent="VBoxContainer"]
+margin_top = 255.0
+margin_right = 819.0
+margin_bottom = 316.0
+custom_fonts/font = SubResource( 3 )
+text = "Play notes simultaneously"
+
+[node name="Button4" type="Button" parent="VBoxContainer"]
+margin_top = 346.0
+margin_right = 819.0
+margin_bottom = 407.0
+custom_fonts/font = SubResource( 3 )
+text = "Play a note with an envelop (hold)"
+[connection signal="pressed" from="VBoxContainer/Button1" to="Samplers" method="playBasicSampler"]
+[connection signal="pressed" from="VBoxContainer/Button2" to="Samplers" method="playChord"]
+[connection signal="pressed" from="VBoxContainer/Button3" to="Samplers" method="playMultiSampler"]
+[connection signal="button_down" from="VBoxContainer/Button4" to="Samplers" method="playEnvSampler"]
+[connection signal="button_up" from="VBoxContainer/Button4" to="Samplers" method="releaseEnvSampler"]

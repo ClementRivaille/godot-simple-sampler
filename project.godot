@@ -1,0 +1,55 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=4
+
+_global_script_classes=[ {
+"base": "Sampler",
+"class": "Multisampler",
+"language": "GDScript",
+"path": "res://addons/SimpleSampler/multisampler.gd"
+}, {
+"base": "Resource",
+"class": "NoteSample",
+"language": "GDScript",
+"path": "res://addons/SimpleSampler/sample_resource.gd"
+}, {
+"base": "Node",
+"class": "NoteValueCalculator",
+"language": "GDScript",
+"path": "res://addons/SimpleSampler/note_value.gd"
+}, {
+"base": "AudioStreamPlayer",
+"class": "Sampler",
+"language": "GDScript",
+"path": "res://addons/SimpleSampler/sampler.gd"
+} ]
+_global_script_class_icons={
+"Multisampler": "",
+"NoteSample": "",
+"NoteValueCalculator": "",
+"Sampler": ""
+}
+
+[application]
+
+config/name="Simple Sampler"
+run/main_scene="res://Demonstration.tscn"
+config/icon="res://icon.png"
+
+[autoload]
+
+NoteValue="*res://addons/SimpleSampler/note_value.gd"
+
+[editor_plugins]
+
+enabled=PoolStringArray( "SimpleSampler" )
+
+[rendering]
+
+environment/default_environment="res://default_env.tres"
