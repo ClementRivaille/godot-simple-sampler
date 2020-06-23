@@ -21,7 +21,7 @@ func _enter_tree():
     preload("multisampler.gd"),
     preload("multisampler_icon.png")
   )
-  
+
 
 func _exit_tree():
   remove_custom_type("NoteSample")

@@ -17,7 +17,7 @@ func _ready():
     sampler.release = release
     sampler.volume_db = volume_db
     sampler.bus = bus
-    
+
     add_child(sampler)
     samplers.append(sampler)
 
@@ -26,7 +26,7 @@ func play_note(note: String, octave: int = 4):
   var sampler: Sampler = samplers[next_available]
   sampler.play_note(note, octave)
   next_available = (next_available + 1) % max_notes
-  
+
 func stop():
   for s in samplers:
     var sampler: Sampler = s
