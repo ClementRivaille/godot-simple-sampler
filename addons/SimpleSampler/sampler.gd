@@ -21,7 +21,7 @@ func _ready():
     var sample: NoteSample = s
     sample.initValue(calculator)
   samples.sort_custom(self, "_compare_samples")
-  
+
   # Create tween & timer for sustain and release
   tween = Tween.new()
   add_child(tween)
@@ -59,7 +59,7 @@ func play_note(note: String, octave: int = 4):
   pitch_scale = pow(2, (note_val - sample.value) / 12.0)
 
   _reset_envelope()
-  
+
   if attack > 0:
     tween.interpolate_property(self, "volume_db",
       -50, max_volume,
@@ -67,9 +67,9 @@ func play_note(note: String, octave: int = 4):
     tween.connect("tween_completed", self, "_end_attack")
     in_attack = true
     tween.start()
-  
+
   play(0.0)
-  
+
   # If sustain is set with no atack, plan a release
   if (sustain > 0 && attack <= 0):
     timer.start()
@@ -106,7 +106,7 @@ func _end_sustain(volume_from: float = max_volume):
       tween.connect("tween_completed", self, "_end_release")
       in_release = true
       tween.start()
-    
+
 func _end_release(_object: Object, _path: NodePath):
   stop()
   in_release = false
@@ -127,7 +127,7 @@ func _reset_envelope():
     tween.remove_all()
     tween.disconnect("tween_completed", self, "_end_release")
     in_release = false
-    
+
   # Stop sound
   if playing:
     stop()

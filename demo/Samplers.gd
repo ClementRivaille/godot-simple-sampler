@@ -46,7 +46,7 @@ func playEnvSampler():
   var note: String = notes[index2]
   envSampler.play_note(note, 4)
   index2 = (index2 + 1)%notes.size()
-  
+
 # Check out the envSampler setting in the scene:
 # It has an attack of 0.3, meaning that there will be a fade in at the start
 # Its sustain is still -1 in order to let it loop ; but if you set it to a positive value, the note will automatically release after this delay
@@ -55,6 +55,6 @@ func playEnvSampler():
 # To manually release a note, just use the "release" function
 func releaseEnvSampler():
   envSampler.release()
-  
+
 # This works exactly the same for a multisampler. "release" will release all notes currently playing.
 # Also, MultiSampler inherits from Sampler, and has the same methods. So you can use it as a Sampler if you need to!
