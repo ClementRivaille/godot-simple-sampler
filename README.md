@@ -12,13 +12,13 @@ Copy the `addons/SimpleSampler` folder and put it in your project at the path `a
 
 ### Basics
 
-_SimpleSampler_ gives you access to two new Nodes: **Multisampler** and **Sampler**. For most of your projects, you should use _Multisampler_, as it allows to play several notes simultaneously. But if you know that it won't be the case, Sampler might slightly lighter. Both nodes share the same methods.
+_SimpleSampler_ gives you access to two new Nodes: **Sampler Instrument** and **Sampler**. For most of your projects, you should use _Sampler Instrument_, as it allows to play several notes simultaneously. But if you know that it won't be the case, Sampler might slightly lighter. Both nodes share the same methods.
 
 ![Add new sampler](doc/add-sampler.png)
 
 Samplers are musical instruments that take several sound samples as input, and can then play any note by calculating the sample to play and the pitch to apply.
 
-To configure a Sampler instrument, you need to register its note samples. For this, you must provide your own sound files (see the section below to know where you can find some). Each file must correspond to a single note. Of course, you don't need to have a file for every possible note (that would be too heavy)! Usually, having three samples per octave gives great results. Files can be single sounds, or loops, depending on how you import them. Samplers work well with .wav or .ogg!
+To configure a Sampler, you need to register its note samples. For this, you must provide your own sound files (see the section below to know where you can find some). Each file must correspond to a single note. Of course, you don't need to have a file for every possible note (that would be too heavy)! Usually, having three samples per octave gives great results. Files can be single sounds, or loops, depending on how you import them. Samplers work well with .wav or .ogg!
 
 Once you have your samples, you must add them to the Sampler, in the _samples_ array. _Simple Sampler_ provides a Resource to manage samples: **NoteSample**. Add one of them for each sample files you have.
 
@@ -52,7 +52,7 @@ sampler.release()
 
 ### Polyphony
 
-As said above, Multisampler are able to play several notes at the same time. This is useful for playing chords, but also for overlapping notes with long reverb or delay!
+As said above, SamplerInstruments are able to play several notes at the same time. This is useful for playing chords, but also for overlapping notes with long reverb or delay!
 
 The number of simultaneous note possible is not infinite though. The limit must be set on the parameter _Max Notes_. If you go beyond that number, the first note played will be replaced.
 
@@ -71,7 +71,7 @@ Calling `release` will release every currently playing note.
 
 ### Envelop
 
-_Sampler_ and _Multisampler_ have a simplified sound envelop system to customize the sound of the instrument. It consists of three parameters: _Attack_, _Sustain_ and _Release_. Their default value is -1, meaning that they are not active.
+_Sampler_ and _SamplerInstrument_ have a simplified sound envelop system to customize the sound of the instrument. It consists of three parameters: _Attack_, _Sustain_ and _Release_. Their default value is -1, meaning that they are not active.
 
 - _Attack_ is the length (in seconds) of a fade-in at the beginning of the sound. If negative, the sound will play immediately at its default volume.
 - _Sustain_ is the length (in seconds) of the sound after the attack. Once this delay is passed, it will automatically call `release`. If negative, the sound will play entirely or in loop.
@@ -105,4 +105,4 @@ There are multiple places on the web where you can find audio samples for all ki
 
 There are surely plenty other places where you can find or purchase great sound samples. You can also make your own! As you've seen, you don't actually need a lot of them to make a sampler. So you can use the musical tool of your choice, play a bunch of notes, and make your own sample files!
 
-Also, you can save and share your own samplers between projects (or even users!), either by saving _NoteSample_ resources, or a Godot scene with a _Sampler_ or _Multisampler_ as root.
+Also, you can save and share your own samplers between projects (or even users!), either by saving _NoteSample_ resources, or a Godot scene with a _Sampler_ or _SamplerInstrument_ as root.

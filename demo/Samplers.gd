@@ -4,8 +4,8 @@ extends Node2D
 
 # Each button in the demo corresponds to a single sampler. Check out their settings in the scene.
 @onready var basicSampler : Sampler = $Sampler
-@onready var chordSampler : Multisampler = $Multisampler
-@onready var multisampler : Multisampler = $Multisampler2
+@onready var chordSampler : SamplerInstrument = $SamplerInstrument
+@onready var samplerInstrument : SamplerInstrument = $SamplerInstrument2
 @onready var envSampler : Sampler = $EnvSampler
 
 # Here are the notes that we play in the scene. You can edit them to hear the result.
@@ -23,7 +23,7 @@ func playBasicSampler():
   basicSampler.play_note(note, 4)
   index0 = (index0 + 1)%notes.size()
 
-# Playing several notes at the same time with a multisampler
+# Playing several notes at the same time with a SamplerInstrument
 # is made just by calling "play_note" for each notes! Easy!
 func playChord():
   chordSampler.play_note("C", 4)
@@ -31,13 +31,13 @@ func playChord():
   chordSampler.play_note("G", 4)
   chordSampler.play_note("B", 4)
 
-# Not much diff than from above, except that since we use a Multisampler,
+# Not much diff than from above, except that since we use a SamplerInstrument,
 # notes will play on top of each other instead of being replaced.
 # Useful if you have long delay or reverb.
 func playMultiSampler():
   var note: String = notes[index1]
   # Also, the octave parameter of play_note is optional! Its default value is 4.
-  multisampler.play_note(note)
+  samplerInstrument.play_note(note)
   index1 = (index1 + 1)%notes.size()
 
 # Again, that's exactly the same code from above!
@@ -56,5 +56,4 @@ func playEnvSampler():
 func releaseEnvSampler():
   envSampler.release()
 
-# This works exactly the same for a multisampler. "release" will release all notes currently playing.
-# Also, MultiSampler inherits from Sampler, and has the same methods. So you can use it as a Sampler if you need to!
+# When a SamplerInstrument is playing several notes "release" will release all notes currently playing.

@@ -16,9 +16,9 @@ func _enter_tree():
     preload("sampler_icon.png")
   )
   add_custom_type(
-    "Multisampler",
+    "SamplerInstrument",
     "AudioStreamPlayer",
-    preload("multisampler.gd"),
+    preload("sampler_instrument.gd"),
     preload("multisampler_icon.png")
   )
 
@@ -26,5 +26,5 @@ func _enter_tree():
 func _exit_tree():
   remove_custom_type("NoteSample")
   remove_custom_type("Sampler")
-  remove_custom_type("Multisampler")
+  remove_custom_type("SamplerInstrument")
   remove_autoload_singleton("NoteValue")

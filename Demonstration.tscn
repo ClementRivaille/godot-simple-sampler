@@ -1,13 +1,13 @@
-[gd_scene load_steps=15 format=3 uid="uid://his7ivunudvm"]
+[gd_scene load_steps=15 format=3 uid="uid://dh7stg2mbwjit"]
 
 [ext_resource type="Resource" uid="uid://or0rpm8mm2fx" path="res://samples/synth/G#4.tres" id="1"]
 [ext_resource type="Script" path="res://addons/SimpleSampler/sampler.gd" id="2"]
 [ext_resource type="Resource" path="res://samples/synth/E5.tres" id="3"]
-[ext_resource type="Resource" path="res://samples/synth/E4.tres" id="4"]
+[ext_resource type="Resource" uid="uid://4fky4fiaq5cv" path="res://samples/synth/E4.tres" id="4"]
 [ext_resource type="Resource" path="res://samples/synth/B4.tres" id="5"]
 [ext_resource type="Resource" path="res://samples/synth/C#5.tres" id="6"]
-[ext_resource type="Script" path="res://addons/SimpleSampler/multisampler.gd" id="7"]
 [ext_resource type="FontFile" uid="uid://dcjom54wtn1jo" path="res://demo/Oswald-Medium.ttf" id="8"]
+[ext_resource type="Script" path="res://addons/SimpleSampler/sampler_instrument.gd" id="8_k2wil"]
 [ext_resource type="Script" path="res://demo/Samplers.gd" id="9"]
 [ext_resource type="Script" path="res://addons/SimpleSampler/sample_resource.gd" id="10"]
 [ext_resource type="AudioStream" uid="uid://cfyktwfjlhl7x" path="res://samples/sawtooth_A440.ogg" id="11"]
@@ -2375,12 +2375,12 @@ script = ExtResource("9")
 script = ExtResource("2")
 samples = Array[ExtResource("10")]([ExtResource("5"), ExtResource("6"), ExtResource("4"), ExtResource("3"), ExtResource("1")])
 
-[node name="Multisampler" type="AudioStreamPlayer" parent="Samplers"]
-script = ExtResource("7")
+[node name="SamplerInstrument" type="AudioStreamPlayer" parent="Samplers"]
+script = ExtResource("8_k2wil")
 samples = Array[ExtResource("10")]([ExtResource("5"), ExtResource("6"), ExtResource("4"), ExtResource("3"), ExtResource("1")])
 
-[node name="Multisampler2" type="AudioStreamPlayer" parent="Samplers"]
-script = ExtResource("7")
+[node name="SamplerInstrument2" type="AudioStreamPlayer" parent="Samplers"]
+script = ExtResource("8_k2wil")
 samples = Array[ExtResource("10")]([ExtResource("5"), ExtResource("6"), ExtResource("4"), ExtResource("3"), ExtResource("1")])
 
 [node name="EnvSampler" type="AudioStreamPlayer" parent="Samplers"]
