@@ -1,5 +1,6 @@
+@icon("multisampler_icon.png")
 extends Sampler
-class_name Multisampler
+class_name SamplerInstrument
 
 ## Audio instrument using samples to play notes
 ##

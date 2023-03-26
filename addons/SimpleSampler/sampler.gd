@@ -1,3 +1,4 @@
+@icon("sampler_icon.png")
 extends AudioStreamPlayer
 class_name Sampler
 
