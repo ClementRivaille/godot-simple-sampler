@@ -2388,8 +2388,8 @@ samples = Array[ExtResource("10")]([ExtResource("5"), ExtResource("6"), ExtResou
 [node name="EnvSampler" type="AudioStreamPlayer" parent="Samplers"]
 script = ExtResource("2")
 samples = Array[ExtResource("10")]([SubResource("1")])
-attack = 0.3
-release = 1.0
+env_attack = 0.3
+env_release = 1.0
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 1

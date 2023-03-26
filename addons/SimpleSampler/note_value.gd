@@ -35,7 +35,7 @@ func get_note_value(tone: String, octave: int = 4) -> int:
 
 # Return the name of a note from its value
 func get_note_name(value: int) -> String:
-  var notes := note_values.keys()
+  var notes : Array[String] = note_values.keys()
   var values := note_values.values()
   var index: int = values.find(value % 12)
   return notes[index]
