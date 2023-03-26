@@ -1,10 +1,10 @@
 extends Sampler
 class_name Multisampler
 
-export(int) var max_notes:= 1
+@export var max_notes: int = 1
 
-var samplers := []
-var next_available = 0
+var samplers : Array[Sampler] = []
+var next_available := 0
 
 func _ready():
   # Create samplers
@@ -33,7 +33,7 @@ func stop():
     sampler.stop()
 
 # Stop the note with a release
-func release():
+func release_note():
   for s in samplers:
     var sampler: Sampler = s
-    sampler.release()
+    sampler.release_note()

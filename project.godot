@@ -6,50 +6,29 @@
 ;   [section] ; section goes between []
 ;   param=value ; assign values to parameters
 
-config_version=4
-
-_global_script_classes=[ {
-"base": "Sampler",
-"class": "Multisampler",
-"language": "GDScript",
-"path": "res://addons/SimpleSampler/multisampler.gd"
-}, {
-"base": "Resource",
-"class": "NoteSample",
-"language": "GDScript",
-"path": "res://addons/SimpleSampler/sample_resource.gd"
-}, {
-"base": "Node",
-"class": "NoteValueCalculator",
-"language": "GDScript",
-"path": "res://addons/SimpleSampler/note_value.gd"
-}, {
-"base": "AudioStreamPlayer",
-"class": "Sampler",
-"language": "GDScript",
-"path": "res://addons/SimpleSampler/sampler.gd"
-} ]
-_global_script_class_icons={
-"Multisampler": "",
-"NoteSample": "",
-"NoteValueCalculator": "",
-"Sampler": ""
-}
+config_version=5
 
 [application]
 
 config/name="Simple Sampler"
 run/main_scene="res://Demonstration.tscn"
+config/features=PackedStringArray("4.0")
 config/icon="res://icon.png"
 
 [autoload]
 
 NoteValue="*res://addons/SimpleSampler/note_value.gd"
 
+[debug]
+
+gdscript/warnings/unsafe_property_access=1
+gdscript/warnings/unsafe_method_access=1
+gdscript/warnings/unsafe_cast=1
+
 [editor_plugins]
 
-enabled=PoolStringArray( "SimpleSampler" )
+enabled=PackedStringArray("res://addons/SimpleSampler/plugin.cfg")
 
 [rendering]
 
-environment/default_environment="res://default_env.tres"
+environment/defaults/default_environment="res://default_env.tres"

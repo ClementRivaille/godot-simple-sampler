@@ -1,6 +1,6 @@
 [gd_resource type="Resource" load_steps=4 format=2]
 
-[ext_resource path="res://addons/SimpleSampler/sample_icon.png" type="Texture" id=1]
+[ext_resource path="res://addons/SimpleSampler/sample_icon.png" type="Texture2D" id=1]
 [ext_resource path="res://addons/SimpleSampler/sample_resource.gd" type="Script" id=2]
 [ext_resource path="res://samples/synth/E5.ogg" type="AudioStream" id=3]
 

@@ -3,13 +3,13 @@ extends Node2D
 # Hi! This script is a good demo of what you can do with Simple Sampler, and how it works
 
 # Each button in the demo corresponds to a single sampler. Check out their settings in the scene.
-onready var basicSampler : Sampler = $Sampler
-onready var chordSampler : Multisampler = $Multisampler
-onready var multisampler : Multisampler = $Multisampler2
-onready var envSampler : Sampler = $EnvSampler
+@onready var basicSampler : Sampler = $Sampler
+@onready var chordSampler : Multisampler = $Multisampler
+@onready var multisampler : Multisampler = $Multisampler2
+@onready var envSampler : Sampler = $EnvSampler
 
 # Here are the notes that we play in the scene. You can edit them to hear the result.
-var notes := ["C", "E", "G", "B"]
+var notes : Array[String] = ["C", "E", "G", "B"]
 
 # (don't mind this dirty logic, it's just here to make the scene work without hassle)
 var index0 := 0
@@ -54,7 +54,7 @@ func playEnvSampler():
 
 # To manually release a note, just use the "release" function
 func releaseEnvSampler():
-  envSampler.release()
+  envSampler.release_note()
 
 # This works exactly the same for a multisampler. "release" will release all notes currently playing.
 # Also, MultiSampler inherits from Sampler, and has the same methods. So you can use it as a Sampler if you need to!

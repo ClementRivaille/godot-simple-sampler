@@ -1,10 +1,9 @@
 extends Resource
 class_name NoteSample
 
-# warning-ignore:unused_class_variable
-export(AudioStream) var stream: AudioStream
-export(String, "C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B") var tone: String = "C"
-export(int) var octave := 4
+@export var stream: AudioStream
+@export_enum("C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B") var tone: String = "C"
+@export var octave : int = 4
 
 var value: int
 

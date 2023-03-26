@@ -1,13 +1,13 @@
 extends AudioStreamPlayer
 class_name Sampler
 
-export(Array, AudioStreamSample) var samples: Array
+@export var samples: Array[NoteSample]
 
-export(float) var attack := -1.0
-export(float) var sustain := -1.0
-export(float) var release := -1.0
+@export var attack: float = -1.0
+@export var sustain: float = -1.0
+@export var release: float = -1.0
 
-onready var max_volume := volume_db
+@onready var max_volume := volume_db
 var tween: Tween
 var timer: Timer;
 
@@ -20,18 +20,16 @@ func _ready():
   for s in samples:
     var sample: NoteSample = s
     sample.initValue(calculator)
-  samples.sort_custom(self, "_compare_samples")
+  samples.sort_custom(func(a: NoteSample, b: NoteSample): a.value < b.value)
 
-  # Create tween & timer for sustain and release
-  tween = Tween.new()
-  add_child(tween)
+  # Create sustain timer
   timer = Timer.new()
   add_child(timer)
   # Initialize with sustain
   if sustain > 0:
     timer.wait_time = sustain
     timer.one_shot = true;
-    timer.connect("timeout", self, "_end_sustain")
+    timer.connect("timeout", _end_sustain)
 
 func play_note(note: String, octave: int = 4):
   if samples.size() == 0:
@@ -61,12 +59,13 @@ func play_note(note: String, octave: int = 4):
   _reset_envelope()
 
   if attack > 0:
-    tween.interpolate_property(self, "volume_db",
-      -50, max_volume,
-      attack, Tween.TRANS_SINE, Tween.EASE_OUT)
-    tween.connect("tween_completed", self, "_end_attack")
+    volume_db = -50
+    tween = create_tween()
+    tween.tween_property(self, "volume_db", max_volume, attack
+      ).set_trans(Tween.TRANS_SINE
+      ).set_ease(Tween.EASE_OUT)
+    tween.tween_callback(_end_attack)
     in_attack = true
-    tween.start()
 
   play(0.0)
 
@@ -75,22 +74,17 @@ func play_note(note: String, octave: int = 4):
     timer.start()
 
 # Stop the note with a release
-func release():
+func release_note():
   if playing && !in_release:
     if in_attack:
-      tween.remove_all()
-      tween.disconnect("tween_completed", self, "_end_attack")
+      tween.kill()
       in_attack = false
       _end_sustain(volume_db)
     else:
       _end_sustain()
 
-func _compare_samples(a: NoteSample, b: NoteSample):
-  return a.value < b.value
-
-func _end_attack(_object: Object, _path: NodePath):
+func _end_attack():
   in_attack = false
-  tween.disconnect("tween_completed", self, "_end_attack")
   if (sustain >= 0):
     timer.start()
 
@@ -100,17 +94,18 @@ func _end_sustain(volume_from: float = max_volume):
       stop()
     else:
       # Start release
-      tween.interpolate_property(self, "volume_db",
-        volume_from, -50,
-        release, Tween.TRANS_SINE, Tween.EASE_IN_OUT)
-      tween.connect("tween_completed", self, "_end_release")
+      volume_db = volume_from
+      tween = create_tween()
+      tween.tween_property(self, "volume_db",
+        -50, release
+        ).set_trans(Tween.TRANS_SINE
+        ).set_ease(Tween.EASE_IN_OUT)
+      tween.tween_callback(_end_release)
       in_release = true
-      tween.start()
 
-func _end_release(_object: Object, _path: NodePath):
+func _end_release():
   stop()
   in_release = false
-  tween.disconnect("tween_completed", self, "_end_release")
   _reset_envelope()
 
 # Reinitialize envelope tween & timer to prepare for the next note
@@ -119,13 +114,11 @@ func _reset_envelope():
     timer.stop()
   if in_attack:
     # During or after attack, stop & disconnect tween
-    tween.remove_all()
-    tween.disconnect("tween_completed", self, "_end_attack")
+    tween.kill()
     in_attack = false
   if in_release:
     # During or after release, stop & disconnect tween
-    tween.remove_all()
-    tween.disconnect("tween_completed", self, "_end_release")
+    tween.kill()
     in_release = false
 
   # Stop sound
