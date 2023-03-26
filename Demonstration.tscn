@@ -2377,12 +2377,10 @@ samples = Array[ExtResource("10")]([ExtResource("5"), ExtResource("6"), ExtResou
 
 [node name="Multisampler" type="AudioStreamPlayer" parent="Samplers"]
 script = ExtResource("7")
-max_notes = 4
 samples = Array[ExtResource("10")]([ExtResource("5"), ExtResource("6"), ExtResource("4"), ExtResource("3"), ExtResource("1")])
 
 [node name="Multisampler2" type="AudioStreamPlayer" parent="Samplers"]
 script = ExtResource("7")
-max_notes = 4
 samples = Array[ExtResource("10")]([ExtResource("5"), ExtResource("6"), ExtResource("4"), ExtResource("3"), ExtResource("1")])
 
 [node name="EnvSampler" type="AudioStreamPlayer" parent="Samplers"]

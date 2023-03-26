@@ -1,7 +1,12 @@
 extends Sampler
 class_name Multisampler
 
-@export var max_notes: int = 1
+## Audio instrument using samples to play notes
+##
+## Virtual instrument that uses a list of sample sound to infer notes between and play them
+
+## Maximum of simultaneous notes allowed
+@export var max_notes: int = 4
 
 var samplers : Array[Sampler] = []
 var next_available := 0

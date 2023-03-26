@@ -1,11 +1,19 @@
 extends AudioStreamPlayer
 class_name Sampler
 
+## Audio instrument playing single notes
+##
+## For playing several simultaneous notes, use Multisampler instead
+
+## List of audio samples from which to generate notes
 @export var samples: Array[NoteSample]
 
 @export_group("Envelop", "env_")
+## Attack in secondes
 @export var env_attack: float = -1.0
+## Sustain in seconds
 @export var env_sustain: float = -1.0
+## Release in secondes
 @export var env_release: float = -1.0
 
 @onready var max_volume := volume_db
