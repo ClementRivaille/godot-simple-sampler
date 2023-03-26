@@ -54,7 +54,7 @@ func playEnvSampler():
 
 # To manually release a note, just use the "release" function
 func releaseEnvSampler():
-  envSampler.release_note()
+  envSampler.release()
 
 # This works exactly the same for a multisampler. "release" will release all notes currently playing.
 # Also, MultiSampler inherits from Sampler, and has the same methods. So you can use it as a Sampler if you need to!

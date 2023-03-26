@@ -12,9 +12,9 @@ func _ready():
   for i in range(max_notes):
     var sampler := Sampler.new()
     sampler.samples = samples
-    sampler.attack = attack
-    sampler.sustain = sustain
-    sampler.release = release
+    sampler.env_attack = env_attack
+    sampler.env_sustain = env_sustain
+    sampler.env_release = env_release
     sampler.volume_db = volume_db
     sampler.bus = bus
 
@@ -33,7 +33,7 @@ func stop():
     sampler.stop()
 
 # Stop the note with a release
-func release_note():
+func release():
   for s in samplers:
     var sampler: Sampler = s
-    sampler.release_note()
+    sampler.release()
