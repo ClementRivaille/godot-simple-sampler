@@ -1,15 +1,19 @@
 [remap]
 
-importer="ogg_vorbis"
-type="AudioStreamOGGVorbis"
-path="res://.import/Db5.ogg-e380948764980b4c1a2067a2618331c5.oggstr"
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://c5lwu7cmoc7mg"
+path="res://.godot/imported/Db5.ogg-e380948764980b4c1a2067a2618331c5.oggvorbisstr"
 
 [deps]
 
 source_file="res://samples/synth/Db5.ogg"
-dest_files=[ "res://.import/Db5.ogg-e380948764980b4c1a2067a2618331c5.oggstr" ]
+dest_files=["res://.godot/imported/Db5.ogg-e380948764980b4c1a2067a2618331c5.oggvorbisstr"]
 
 [params]
 
 loop=false
 loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
