@@ -105,11 +105,11 @@ func startGlideChord():
     glidingChordSampler.play_note(note)
   chord_idx = (chord_idx + 1)%chords.size()
   gliding = true
-# When gliding several notes, the notes are gliding in the order they were called
+# Use chord_glide to glide notes in the order they were played
 func glideChord():
   var chord := chords[chord_idx]
   for note in chord:
-    glidingChordSampler.glide(note, 4, glide_duration)
+    glidingChordSampler.chord_glide(note, 4, glide_duration)
   chord_idx = (chord_idx + 1)%chords.size()
 
 func releaseChordGlide():

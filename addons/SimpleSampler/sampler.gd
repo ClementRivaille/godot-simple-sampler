@@ -136,6 +136,8 @@ func _end_sustain(volume_from: float = max_volume):
 
 func _end_release():
   stop()
+  if glissando != null && glissando.is_running():
+    glissando.kill()
   in_release = false
   _reset_envelope()
 

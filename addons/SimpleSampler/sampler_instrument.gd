@@ -11,6 +11,7 @@ class_name SamplerInstrument
 
 var samplers : Array[Sampler] = []
 var next_available := 0
+var last_sampler_used: Sampler
 
 func _ready():
   # Create samplers
@@ -32,6 +33,7 @@ func play_note(note: String, octave: int = 4):
   var sampler: Sampler = samplers[next_available]
   sampler.play_note(note, octave)
   next_available = (next_available + 1) % max_notes
+  last_sampler_used = sampler
 
 func stop():
   for s in samplers:
@@ -42,8 +44,14 @@ func release():
   for s in samplers:
     var sampler: Sampler = s
     sampler.release()
-
+    
 func glide(note: String, octave: int = 4, duration: float = 0.1):
+  if (last_sampler_used != null && last_sampler_used.playing):
+    last_sampler_used.glide(note, octave, duration)
+
+## Glide a note within a chord.
+## Will glide the first available playing note that is not already gliding.
+func chord_glide(note: String, octave: int = 4, duration: float = 0.1):
   # Order samplers from least to most recent play
   var ordered_samplers := samplers.duplicate() as Array[Sampler]
   for idx in range(next_available):
