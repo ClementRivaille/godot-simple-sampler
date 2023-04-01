@@ -50,28 +50,35 @@ func play_note(note: String, octave: int = 4):
   if samples.size() == 0:
     return
 
-  # look for the closest note in the samples
+  # look for the closest notes in the samples
   var calculator: NoteValueCalculator = get_node("/root/NoteValue")
   var note_val := calculator.get_note_value(note, octave)
+  playing_note_value = note_val  
   var idx := 0
-  var sample: NoteSample = samples[0]
-  var diff := absi(note_val - sample.value)
-  while (idx <  samples.size() - 1):
-    sample = samples[idx+1]
+  var closest_samples: Array[NoteSample] = []
+  var diff := absi(note_val - samples[0].value)
+  while (idx <  samples.size()):
+    var sample := samples[idx]
     var next_diff := absi(note_val - sample.value)
-    if (diff < next_diff):
+    # if note is closer
+    if (next_diff < diff):
+      diff = next_diff
+      closest_samples.clear()
+      closest_samples.append(sample)
+    # if note is equal
+    elif (next_diff == diff):
+      closest_samples.append(sample)
+    # if note is further (stop searching)
+    else:
       break
-    diff = next_diff
     idx += 1
 
-  # Set sample
-  sample = samples[idx]
-  playing_sample = sample
-  playing_note_value = note_val
-  stream = sample.stream
+  # Pick one of the close samples
+  playing_sample = closest_samples[randi()%closest_samples.size()]
+  stream = playing_sample.stream
 
   # Set pitch relatively to sample
-  pitch_scale = pow(2, (note_val - sample.value) / 12.0)
+  pitch_scale = pow(2, (note_val - playing_sample.value) / 12.0)
 
   _reset_envelope()
 

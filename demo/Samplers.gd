@@ -115,3 +115,20 @@ func glideChord():
 func releaseChordGlide():
   glidingChordSampler.release()
   gliding = false
+
+##
+# Rich instrument
+##
+
+# Instruments can use several samples for the same note, providing a richer sound
+
+# Guitar has 4 different samples for each note
+@onready var guitar: SamplerInstrument = $Guitar
+
+var gindex := 0
+
+# When a note is played, a random sample will be selected
+func playGuitar():
+  var note := notes[gindex]
+  guitar.play_note(note)
+  gindex = (gindex+1)%notes.size()
