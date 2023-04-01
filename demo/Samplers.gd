@@ -7,14 +7,16 @@ extends Node2D
 @onready var chordSampler : SamplerInstrument = $SamplerInstrument
 @onready var samplerInstrument : SamplerInstrument = $SamplerInstrument2
 @onready var envSampler : Sampler = $EnvSampler
+@onready var glidingChordSampler: SamplerInstrument = $GlidingChordSampler
 
 # Here are the notes that we play in the scene. You can edit them to hear the result.
-var notes : Array[String] = ["C", "E", "G", "B"]
+@export var notes : Array[String] = ["C", "E", "G", "B"]
 
 # (don't mind this dirty logic, it's just here to make the scene work without hassle)
 var index0 := 0
 var index1 := 0
 var index2 := 0
+var gliding := false
 
 # To play a note with a sampler, just use the method "play_note" with the name of the note and its octave.
 # Example : play_note("C", 4)
@@ -55,5 +57,61 @@ func playEnvSampler():
 # To manually release a note, just use the "release" function
 func releaseEnvSampler():
   envSampler.release()
+  gliding = false
 
 # When a SamplerInstrument is playing several notes "release" will release all notes currently playing.
+
+### 
+# Gliding
+###
+
+# When a sustained sampler is playing, you can glide its note to a target value
+
+# We use a bit of logic with a timer to glide every one second
+@onready var timer :Timer = $Timer
+func on_timemout():
+  if gliding:
+    glideNote()
+    glideChord()
+
+@export var glide_duration := 0.2
+
+# We start the sampler normally
+func startGliding():
+  playEnvSampler()
+  gliding = true
+# Then to glide, we provide a target note and octave, as well as a duration
+func glideNote():
+  var note: String = notes[index2]
+  envSampler.glide(note, 4, glide_duration)
+  index2 = (index2 + 1)%notes.size()
+
+# Since gliding only updates the pitch of the same stream, it produces a odd sound
+# Ideal for synth or theremins!
+
+# You can also glide chords with a SamplerInstrument
+var chords : Array[Array] = [
+  ['C', 'E', 'G'],
+  ['C', 'F', 'A'],
+  ['D', 'G', 'B'],
+  ['D', 'F', 'B']
+]
+var chord_idx := 0
+
+# Just like above, we call play_note for each note in the chord
+func startGlideChord():
+  var chord := chords[chord_idx]
+  for note in chord:
+    glidingChordSampler.play_note(note)
+  chord_idx = (chord_idx + 1)%chords.size()
+  gliding = true
+# When gliding several notes, the notes are gliding in the order they were called
+func glideChord():
+  var chord := chords[chord_idx]
+  for note in chord:
+    glidingChordSampler.glide(note, 4, glide_duration)
+  chord_idx = (chord_idx + 1)%chords.size()
+
+func releaseChordGlide():
+  glidingChordSampler.release()
+  gliding = false

@@ -24,6 +24,11 @@ var timer: Timer;
 var in_attack := false
 var in_release := false
 
+# Used for gliding
+var playing_sample: NoteSample
+var playing_note_value: int
+var glissando: Tween
+
 func _ready():
   # Calculate samples' values and sort them
   var calculator: NoteValueCalculator = get_node("/root/NoteValue")
@@ -61,6 +66,8 @@ func play_note(note: String, octave: int = 4):
 
   # Set sample
   sample = samples[idx]
+  playing_sample = sample
+  playing_note_value = note_val
   stream = sample.stream
 
   # Set pitch relatively to sample
@@ -92,6 +99,20 @@ func release():
       _end_sustain(volume_db)
     else:
       _end_sustain()
+      
+## When a note is playing, progressively change its pitch to the target
+func glide(note: String, octave: int = 4, duration: float = 0.1):
+  if glissando != null && glissando.is_running():
+    glissando.kill()
+  if playing:
+    var calculator: NoteValueCalculator = get_node("/root/NoteValue")
+    var note_val := calculator.get_note_value(note, octave)
+    playing_note_value = note_val
+    var new_pitch = pow(2, (note_val - playing_sample.value) / 12.0)
+    glissando = create_tween()
+    glissando.tween_property(self, "pitch_scale", new_pitch, duration
+      ).set_trans(Tween.TRANS_SINE
+      ).set_ease(Tween.EASE_IN_OUT)
 
 func _end_attack():
   in_attack = false

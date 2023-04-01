@@ -38,8 +38,26 @@ func stop():
     var sampler: Sampler = s
     sampler.stop()
 
-# Stop the note with a release
 func release():
   for s in samplers:
     var sampler: Sampler = s
     sampler.release()
+
+func glide(note: String, octave: int = 4, duration: float = 0.1):
+  # Order samplers from least to most recent play
+  var ordered_samplers := samplers.duplicate() as Array[Sampler]
+  for idx in range(next_available):
+    ordered_samplers.append(ordered_samplers.pop_front())
+  # Pick a playing sampler
+  var sampler := ordered_samplers[0]
+  var idx := 0
+  while (idx < ordered_samplers.size() - 1 && !_can_glide(sampler)):
+    idx += 1
+    sampler = ordered_samplers[idx]
+
+  # Glide
+  if (_can_glide(sampler)):
+    sampler.glide(note, octave, duration)
+
+func _can_glide(s: Sampler) -> bool:
+  return s.playing && !s.in_release && !(s.glissando != null && s.glissando.is_running())
