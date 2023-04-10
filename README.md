@@ -79,6 +79,48 @@ _Sampler_ and _SamplerInstrument_ have a simplified sound envelop system to cust
 
 You can use those to have more dynamic instruments (with looping sounds), or if you find the length of your sample too long (using _sustain_ and _release_ allows you to interrupt it earlier).
 
+### Velocity and richer sound
+
+Some instruments, especially acoustic ones, have a large array of possible sounds. They can play short notes, long ones, pizzicato, forte, piano… Some VST provide a lot of samples for the same notes, allowing the instrument to sound more organic. Simple Sampler offer some utilities to configure richer instrument in such a way.
+
+You can set a velocity value on an instrument sample. It is an integer value that goes from 0 to 10 (default is 5). When you play a note, you can specify the desired velocity, and the matching sample will be played.
+
+```(gdscript)
+# Play piano
+sampler.play_note("C", 4, 3)
+
+# Play forte
+sampler.play_note("C", 4, 7)
+```
+
+:warning: **Warning:** You have to provide the exact same value that you set on the sample. If no sample matches the velocity, no sound will be played.
+
+You can also configure several samples for the same note. This way, when this note will be played (or a close one), the sample will be randomly chosen among them. This can be useful to make an instrument feel more alive!
+
+### Gliding
+
+You can create a glissando effect by gliding a sustained note from one value to another. This allows you to mimic the sound of some analog instruments, like musical saw or theremin. To do so, when a note is already being played and sustained, use the `glide` function with the target note and the glide duration in seconds.
+
+```(gdscript)
+sampler.glide("G", 4, 0.3)
+```
+
+Note that gliding keeps the same stream played and only change its pitch. It can produces odd sounds if you stretch it too far!
+
+On SamplerInstrument, when several notes are being played simultaneously, `glide` will only change the last played one. However, this might not be the ideal behavior if you want to glide entire chords. To do so, use the `chord_glide` function. This will glide the notes _in the same order you initially played them_. Thus allowing more complex transitions between one chord and another.
+
+```(gdscript)
+func play_chord():
+  sampler.play("D", 4)
+  sampler.play("G", 4)
+  sampler.play("B", 4)
+
+func shift_chord():
+  sampler.chord_glide("E", 4, 0.2)
+  sampler.chord_glide("G", 4, 0.2) # Will stay on G
+  sampler.chord_glide("C", 5, 0.2)
+```
+
 ### Note Value Calculator
 
 For a more advanced use, you can access the class _NoteValueValculator_ used by the samplers:

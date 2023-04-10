@@ -1,4 +1,4 @@
-[gd_scene load_steps=64 format=3 uid="uid://dh7stg2mbwjit"]
+[gd_scene load_steps=64 format=3 uid="uid://brsav6q3j2qr0"]
 
 [ext_resource type="Resource" uid="uid://or0rpm8mm2fx" path="res://samples/synth/G#4.tres" id="1"]
 [ext_resource type="Script" path="res://addons/SimpleSampler/sampler.gd" id="2"]
@@ -2652,7 +2652,7 @@ autostart = true
 
 [node name="Sampler" type="AudioStreamPlayer" parent="Samplers"]
 script = ExtResource("2")
-samples = Array[ExtResource("10")]([ExtResource("5"), ExtResource("6"), ExtResource("4"), ExtResource("3")])
+samples = Array[ExtResource("10")]([ExtResource("5"), ExtResource("6"), ExtResource("4"), ExtResource("3"), ExtResource("1")])
 
 [node name="SamplerInstrument" type="AudioStreamPlayer" parent="Samplers"]
 script = ExtResource("8_k2wil")
