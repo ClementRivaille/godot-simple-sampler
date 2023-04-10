@@ -35,7 +35,7 @@ func _ready():
   for s in samples:
     var sample: NoteSample = s
     sample.initValue(calculator)
-  samples.sort_custom(func(a: NoteSample, b: NoteSample): a.value < b.value)
+  samples.sort_custom(func(a: NoteSample, b: NoteSample): return a.value < b.value)
 
   # Create sustain timer
   timer = Timer.new()
@@ -46,8 +46,12 @@ func _ready():
     timer.one_shot = true;
     timer.connect("timeout", _end_sustain)
 
-func play_note(note: String, octave: int = 4):
-  if samples.size() == 0:
+func play_note(note: String, octave: int = 4, velocity : int = 5):
+  # play only samples matching velocity
+  var matching_samples: Array[NoteSample] = samples.filter(
+    func(sample: NoteSample): return sample.velocity == velocity
+  )
+  if matching_samples.size() == 0:
     return
 
   # look for the closest notes in the samples
@@ -56,9 +60,9 @@ func play_note(note: String, octave: int = 4):
   playing_note_value = note_val  
   var idx := 0
   var closest_samples: Array[NoteSample] = []
-  var diff := absi(note_val - samples[0].value)
-  while (idx <  samples.size()):
-    var sample := samples[idx]
+  var diff := absi(note_val - matching_samples[0].value)
+  while (idx <  matching_samples.size()):
+    var sample := matching_samples[idx]
     var next_diff := absi(note_val - sample.value)
     # if note is closer
     if (next_diff < diff):

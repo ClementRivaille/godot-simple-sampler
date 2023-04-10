@@ -1,8 +1,8 @@
-[gd_scene load_steps=31 format=3 uid="uid://dh7stg2mbwjit"]
+[gd_scene load_steps=64 format=3 uid="uid://dh7stg2mbwjit"]
 
 [ext_resource type="Resource" uid="uid://or0rpm8mm2fx" path="res://samples/synth/G#4.tres" id="1"]
 [ext_resource type="Script" path="res://addons/SimpleSampler/sampler.gd" id="2"]
-[ext_resource type="Resource" path="res://samples/synth/E5.tres" id="3"]
+[ext_resource type="Resource" uid="uid://b17jir0nea6wb" path="res://samples/synth/E5.tres" id="3"]
 [ext_resource type="Resource" uid="uid://4fky4fiaq5cv" path="res://samples/synth/E4.tres" id="4"]
 [ext_resource type="Resource" path="res://samples/synth/B4.tres" id="5"]
 [ext_resource type="Resource" path="res://samples/synth/C#5.tres" id="6"]
@@ -19,60 +19,198 @@
 [ext_resource type="AudioStream" uid="uid://nd3pvneyjqnq" path="res://samples/guitar/m_ D4_2.wav" id="16_oijx4"]
 [ext_resource type="AudioStream" uid="uid://uw80inopcjkt" path="res://samples/guitar/m_ D4_3.wav" id="17_5khhv"]
 [ext_resource type="AudioStream" uid="uid://d0kv1m7vb8nfq" path="res://samples/guitar/m_ D4_4.wav" id="18_8kui8"]
+[ext_resource type="AudioStream" uid="uid://cjqrq6luatw3i" path="res://samples/guitar/p_ A4_1.wav" id="19_bvr04"]
+[ext_resource type="AudioStream" uid="uid://cm6euprgp0l72" path="res://samples/guitar/p_ A4_2.wav" id="20_vsg3u"]
+[ext_resource type="AudioStream" uid="uid://c6wjauknfa2vh" path="res://samples/guitar/p_ A4_3.wav" id="21_aeoqc"]
+[ext_resource type="AudioStream" uid="uid://cxk466tj2i7qx" path="res://samples/guitar/p_ A4_4.wav" id="22_vb1c1"]
+[ext_resource type="AudioStream" uid="uid://fhguloclujqu" path="res://samples/guitar/p_ D4_1.wav" id="23_b00gm"]
+[ext_resource type="AudioStream" uid="uid://bpb73cinqc46k" path="res://samples/guitar/p_ D4_2.wav" id="24_8oq8m"]
+[ext_resource type="AudioStream" uid="uid://crt6lpv34rfwe" path="res://samples/guitar/p_ D4_3.wav" id="25_2ml0u"]
+[ext_resource type="AudioStream" uid="uid://c47hr6cwq16n8" path="res://samples/guitar/p_ D4_4.wav" id="26_lltd0"]
+[ext_resource type="AudioStream" uid="uid://bn8bqjf4isny5" path="res://samples/guitar/f_ A4_1.wav" id="27_i0ipc"]
+[ext_resource type="AudioStream" uid="uid://doomeyfqdv43k" path="res://samples/guitar/f_ A4_2.wav" id="28_ega8x"]
+[ext_resource type="AudioStream" uid="uid://ba1rd5on63t8m" path="res://samples/guitar/f_ A4_3.wav" id="29_11j3m"]
+[ext_resource type="AudioStream" uid="uid://cfxeopjppbvq6" path="res://samples/guitar/f_ A4_4.wav" id="30_ik4e1"]
+[ext_resource type="AudioStream" uid="uid://c4hpxo65k3vkk" path="res://samples/guitar/f_ D4_1.wav" id="31_asyvp"]
+[ext_resource type="AudioStream" uid="uid://bgltkjnq2uypk" path="res://samples/guitar/f_ D4_2.wav" id="32_76slq"]
+[ext_resource type="AudioStream" uid="uid://we8xdjmjb8iu" path="res://samples/guitar/f_ D4_3.wav" id="33_3ihw6"]
+[ext_resource type="AudioStream" uid="uid://dnmm0dnahn8tu" path="res://samples/guitar/f_ D4_4.wav" id="34_qxqr8"]
+[ext_resource type="Script" path="res://demo/VelocityMenu.gd" id="36_pbf0f"]
 
 [sub_resource type="Resource" id="1"]
 script = ExtResource("10")
 stream = ExtResource("11")
 tone = "A"
 octave = 4
+velocity = 5
 
 [sub_resource type="Resource" id="Resource_a02w7"]
 script = ExtResource("10")
 stream = ExtResource("11_dycnb")
 tone = "A"
 octave = 4
+velocity = 5
 
 [sub_resource type="Resource" id="Resource_ts1vd"]
 script = ExtResource("10")
 stream = ExtResource("12_8glvv")
 tone = "A"
 octave = 4
+velocity = 5
 
 [sub_resource type="Resource" id="Resource_5iiay"]
 script = ExtResource("10")
 stream = ExtResource("13_fyx6c")
 tone = "A"
 octave = 4
+velocity = 5
 
 [sub_resource type="Resource" id="Resource_07iul"]
 script = ExtResource("10")
 stream = ExtResource("14_0ts1m")
 tone = "A"
 octave = 4
+velocity = 5
 
 [sub_resource type="Resource" id="Resource_rkdi3"]
 script = ExtResource("10")
 stream = ExtResource("15_trevc")
 tone = "D"
 octave = 4
+velocity = 5
 
 [sub_resource type="Resource" id="Resource_hicrf"]
 script = ExtResource("10")
 stream = ExtResource("16_oijx4")
 tone = "D"
 octave = 4
+velocity = 5
 
 [sub_resource type="Resource" id="Resource_w5nug"]
 script = ExtResource("10")
 stream = ExtResource("17_5khhv")
 tone = "D"
 octave = 4
+velocity = 5
 
 [sub_resource type="Resource" id="Resource_pbm7n"]
 script = ExtResource("10")
 stream = ExtResource("18_8kui8")
 tone = "D"
 octave = 4
+velocity = 5
+
+[sub_resource type="Resource" id="Resource_e2nr5"]
+script = ExtResource("10")
+stream = ExtResource("19_bvr04")
+tone = "A"
+octave = 4
+velocity = 3
+
+[sub_resource type="Resource" id="Resource_oh1iu"]
+script = ExtResource("10")
+stream = ExtResource("20_vsg3u")
+tone = "A"
+octave = 4
+velocity = 3
+
+[sub_resource type="Resource" id="Resource_6xaad"]
+script = ExtResource("10")
+stream = ExtResource("21_aeoqc")
+tone = "A"
+octave = 4
+velocity = 3
+
+[sub_resource type="Resource" id="Resource_5dvw2"]
+script = ExtResource("10")
+stream = ExtResource("22_vb1c1")
+tone = "A"
+octave = 4
+velocity = 3
+
+[sub_resource type="Resource" id="Resource_qp85x"]
+script = ExtResource("10")
+stream = ExtResource("23_b00gm")
+tone = "D"
+octave = 4
+velocity = 3
+
+[sub_resource type="Resource" id="Resource_bxa2w"]
+script = ExtResource("10")
+stream = ExtResource("24_8oq8m")
+tone = "D"
+octave = 4
+velocity = 3
+
+[sub_resource type="Resource" id="Resource_kp1g1"]
+script = ExtResource("10")
+stream = ExtResource("25_2ml0u")
+tone = "D"
+octave = 4
+velocity = 3
+
+[sub_resource type="Resource" id="Resource_bvp66"]
+script = ExtResource("10")
+stream = ExtResource("26_lltd0")
+tone = "D"
+octave = 4
+velocity = 3
+
+[sub_resource type="Resource" id="Resource_dy2u8"]
+script = ExtResource("10")
+stream = ExtResource("27_i0ipc")
+tone = "A"
+octave = 4
+velocity = 7
+
+[sub_resource type="Resource" id="Resource_ls2kb"]
+script = ExtResource("10")
+stream = ExtResource("28_ega8x")
+tone = "A"
+octave = 4
+velocity = 7
+
+[sub_resource type="Resource" id="Resource_3kb1h"]
+script = ExtResource("10")
+stream = ExtResource("29_11j3m")
+tone = "A"
+octave = 4
+velocity = 7
+
+[sub_resource type="Resource" id="Resource_jsjhp"]
+script = ExtResource("10")
+stream = ExtResource("30_ik4e1")
+tone = "A"
+octave = 4
+velocity = 7
+
+[sub_resource type="Resource" id="Resource_vbri3"]
+script = ExtResource("10")
+stream = ExtResource("31_asyvp")
+tone = "D"
+octave = 4
+velocity = 7
+
+[sub_resource type="Resource" id="Resource_olad6"]
+script = ExtResource("10")
+stream = ExtResource("32_76slq")
+tone = "D"
+octave = 4
+velocity = 7
+
+[sub_resource type="Resource" id="Resource_k3fnw"]
+script = ExtResource("10")
+stream = ExtResource("33_3ihw6")
+tone = "D"
+octave = 4
+velocity = 7
+
+[sub_resource type="Resource" id="Resource_hmjb6"]
+script = ExtResource("10")
+stream = ExtResource("34_qxqr8")
+tone = "D"
+octave = 4
+velocity = 7
 
 [sub_resource type="FontFile" id="2"]
 fallbacks = Array[Font]([ExtResource("8")])
@@ -2514,7 +2652,7 @@ autostart = true
 
 [node name="Sampler" type="AudioStreamPlayer" parent="Samplers"]
 script = ExtResource("2")
-samples = Array[ExtResource("10")]([ExtResource("5"), ExtResource("6"), ExtResource("4"), ExtResource("3"), ExtResource("1")])
+samples = Array[ExtResource("10")]([ExtResource("5"), ExtResource("6"), ExtResource("4"), ExtResource("3")])
 
 [node name="SamplerInstrument" type="AudioStreamPlayer" parent="Samplers"]
 script = ExtResource("8_k2wil")
@@ -2525,12 +2663,14 @@ script = ExtResource("8_k2wil")
 samples = Array[ExtResource("10")]([ExtResource("5"), ExtResource("6"), ExtResource("4"), ExtResource("3"), ExtResource("1")])
 
 [node name="EnvSampler" type="AudioStreamPlayer" parent="Samplers"]
+volume_db = -4.0
 script = ExtResource("2")
 samples = Array[ExtResource("10")]([SubResource("1")])
 env_attack = 0.3
 env_release = 1.0
 
 [node name="GlidingChordSampler" type="AudioStreamPlayer" parent="Samplers"]
+volume_db = -7.0
 script = ExtResource("8_k2wil")
 samples = Array[ExtResource("10")]([SubResource("1")])
 env_attack = 0.02
@@ -2538,7 +2678,7 @@ env_release = 0.2
 
 [node name="Guitar" type="AudioStreamPlayer" parent="Samplers"]
 script = ExtResource("8_k2wil")
-samples = Array[ExtResource("10")]([SubResource("Resource_a02w7"), SubResource("Resource_ts1vd"), SubResource("Resource_5iiay"), SubResource("Resource_07iul"), SubResource("Resource_rkdi3"), SubResource("Resource_hicrf"), SubResource("Resource_w5nug"), SubResource("Resource_pbm7n")])
+samples = Array[ExtResource("10")]([SubResource("Resource_a02w7"), SubResource("Resource_ts1vd"), SubResource("Resource_5iiay"), SubResource("Resource_07iul"), SubResource("Resource_rkdi3"), SubResource("Resource_hicrf"), SubResource("Resource_w5nug"), SubResource("Resource_pbm7n"), SubResource("Resource_e2nr5"), SubResource("Resource_oh1iu"), SubResource("Resource_6xaad"), SubResource("Resource_5dvw2"), SubResource("Resource_qp85x"), SubResource("Resource_bxa2w"), SubResource("Resource_kp1g1"), SubResource("Resource_bvp66"), SubResource("Resource_dy2u8"), SubResource("Resource_ls2kb"), SubResource("Resource_3kb1h"), SubResource("Resource_jsjhp"), SubResource("Resource_vbri3"), SubResource("Resource_olad6"), SubResource("Resource_k3fnw"), SubResource("Resource_hmjb6")])
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 1
@@ -2635,11 +2775,39 @@ theme_override_font_sizes/font_size = 24
 text = "Rich instrument"
 horizontal_alignment = 1
 
-[node name="GlideButton" type="Button" parent="HBoxContainer/VBoxContainer2/VBoxContainer3"]
+[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/VBoxContainer2/VBoxContainer3"]
 layout_mode = 2
+theme_override_constants/separation = 15
+alignment = 1
+
+[node name="GuitarButton" type="Button" parent="HBoxContainer/VBoxContainer2/VBoxContainer3/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
 theme_override_fonts/font = SubResource("3")
 theme_override_font_sizes/font_size = 24
 text = "Play note"
+
+[node name="VelocityMenu" type="MenuButton" parent="HBoxContainer/VBoxContainer2/VBoxContainer3/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("8")
+theme_override_font_sizes/font_size = 20
+text = "Velocity: Mezzo"
+flat = false
+alignment = 0
+icon_alignment = 2
+item_count = 3
+popup/item_0/text = "Piano"
+popup/item_0/checkable = 2
+popup/item_0/id = 0
+popup/item_1/text = "Mezzo"
+popup/item_1/checkable = 2
+popup/item_1/checked = true
+popup/item_1/id = 1
+popup/item_2/text = "Forte"
+popup/item_2/checkable = 2
+popup/item_2/id = 2
+script = ExtResource("36_pbf0f")
 
 [connection signal="timeout" from="Samplers/Timer" to="Samplers" method="on_timemout"]
 [connection signal="pressed" from="HBoxContainer/VBoxContainer/Button1" to="Samplers" method="playBasicSampler"]
@@ -2651,4 +2819,5 @@ text = "Play note"
 [connection signal="button_up" from="HBoxContainer/VBoxContainer2/GlideButton" to="Samplers" method="releaseEnvSampler"]
 [connection signal="button_down" from="HBoxContainer/VBoxContainer2/GlideButton2" to="Samplers" method="startGlideChord"]
 [connection signal="button_up" from="HBoxContainer/VBoxContainer2/GlideButton2" to="Samplers" method="releaseChordGlide"]
-[connection signal="button_down" from="HBoxContainer/VBoxContainer2/VBoxContainer3/GlideButton" to="Samplers" method="playGuitar"]
+[connection signal="button_down" from="HBoxContainer/VBoxContainer2/VBoxContainer3/HBoxContainer/GuitarButton" to="Samplers" method="playGuitar"]
+[connection signal="switch_velocity" from="HBoxContainer/VBoxContainer2/VBoxContainer3/HBoxContainer/VelocityMenu" to="Samplers" method="onSelectVelocity"]

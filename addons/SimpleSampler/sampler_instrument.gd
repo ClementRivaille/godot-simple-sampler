@@ -28,10 +28,10 @@ func _ready():
     add_child(sampler)
     samplers.append(sampler)
 
-func play_note(note: String, octave: int = 4):
+func play_note(note: String, octave: int = 4, velocity: int = 5):
   # Call one of the sampler to play the note
   var sampler: Sampler = samplers[next_available]
-  sampler.play_note(note, octave)
+  sampler.play_note(note, octave, velocity)
   next_available = (next_available + 1) % max_notes
   last_sampler_used = sampler
 
@@ -53,7 +53,7 @@ func glide(note: String, octave: int = 4, duration: float = 0.1):
 ## Will glide the first available playing note that is not already gliding.
 func chord_glide(note: String, octave: int = 4, duration: float = 0.1):
   # Order samplers from least to most recent play
-  var ordered_samplers := samplers.duplicate() as Array[Sampler]
+  var ordered_samplers: Array[Sampler] = samplers.duplicate()
   for idx in range(next_available):
     ordered_samplers.append(ordered_samplers.pop_front())
   # Pick a playing sampler

@@ -122,13 +122,22 @@ func releaseChordGlide():
 
 # Instruments can use several samples for the same note, providing a richer sound
 
-# Guitar has 4 different samples for each note
+# Guitar has 4 different samples for each note, as well as 3 levels of velocity
+# (see its samples settings in the scene)
 @onready var guitar: SamplerInstrument = $Guitar
 
 var gindex := 0
+# Here we use 3 for piano, 5 for mezzo, and 7 for forte
+var g_velocity := 5
 
-# When a note is played, a random sample will be selected
+# When a note is played, a random sample of the matching velocity is selected
 func playGuitar():
   var note := notes[gindex]
-  guitar.play_note(note)
+  # Velocity is passed as the third argument (default is 5)
+  guitar.play_note(note, 4, g_velocity)
   gindex = (gindex+1)%notes.size()
+
+
+# Callback for the selection menu
+func onSelectVelocity(velocity: int) -> void:
+  g_velocity = velocity
