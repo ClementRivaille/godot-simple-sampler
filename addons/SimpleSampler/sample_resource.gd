@@ -17,4 +17,4 @@ class_name NoteSample
 var value: int
 
 func initValue(calculator: NoteValueCalculator):
-  value = calculator.get_note_value(tone, octave)
+	value = calculator.get_note_value(tone, octave)
