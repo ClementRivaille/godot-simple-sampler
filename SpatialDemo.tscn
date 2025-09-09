@@ -1,0 +1,56 @@
+[gd_scene load_steps=9 format=3 uid="uid://byirdc5g1af6p"]
+
+[ext_resource type="Script" path="res://addons/SimpleSampler/sampler.gd" id="1_oc1je"]
+[ext_resource type="Script" path="res://demo/SpatialSpeaker.gd" id="1_ufvx1"]
+[ext_resource type="Script" path="res://addons/SimpleSampler/sample_resource.gd" id="2_s7481"]
+[ext_resource type="AudioStream" uid="uid://cfyktwfjlhl7x" path="res://samples/sawtooth_A440.ogg" id="3_4cdoy"]
+[ext_resource type="Texture2D" uid="uid://cluqqjhmblvya" path="res://demo/speaker.png" id="4_4gf7c"]
+[ext_resource type="Script" path="res://demo/SpatialListener.gd" id="5_k4o8p"]
+[ext_resource type="Texture2D" uid="uid://b2lupmwp88ypv" path="res://demo/godot.png" id="6_ss4dp"]
+
+[sub_resource type="Resource" id="Resource_gm4tn"]
+script = ExtResource("2_s7481")
+stream = ExtResource("3_4cdoy")
+tone = "A"
+octave = 4
+velocity = 5
+
+[node name="SpatialDemo" type="Node2D"]
+
+[node name="Speaker" type="Node2D" parent="."]
+script = ExtResource("1_ufvx1")
+
+[node name="Sampler" type="AudioStreamPlayer" parent="Speaker"]
+script = ExtResource("1_oc1je")
+samples = Array[ExtResource("2_s7481")]([SubResource("Resource_gm4tn")])
+env_attack = 0.01
+env_sustain = 0.02
+env_release = 0.6
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Speaker/Sampler"]
+max_distance = 600.0
+panning_strength = 1.2
+
+[node name="Sprite2D" type="Sprite2D" parent="Speaker"]
+texture = ExtResource("4_4gf7c")
+
+[node name="Timer" type="Timer" parent="Speaker"]
+wait_time = 0.2
+autostart = true
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="Listener" type="Node2D" parent="."]
+position = Vector2(-440, -215)
+script = ExtResource("5_k4o8p")
+
+[node name="AudioListener2D" type="AudioListener2D" parent="Listener"]
+current = true
+metadata/_edit_lock_ = true
+
+[node name="Sprite" type="Sprite2D" parent="Listener"]
+scale = Vector2(0.03, 0.03)
+texture = ExtResource("6_ss4dp")
+metadata/_edit_lock_ = true
+
+[connection signal="timeout" from="Speaker/Timer" to="Speaker" method="play_note"]
