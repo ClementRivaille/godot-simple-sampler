@@ -13,18 +13,23 @@ var samplers : Array[Sampler] = []
 var next_available := 0
 var last_sampler_used: Sampler
 
+var custom_player: Node
+var use_custom_player: bool = false
+
 func _ready():
+	# Use custom child instrument if set
+	for child: Node in get_children():
+		if child is AudioStreamPlayer \
+			|| child is AudioStreamPlayer2D \
+			|| child is AudioStreamPlayer3D:
+			custom_player = child
+			use_custom_player = true
+			break
+
 	# Create samplers
 	# warning-ignore:unused_variable
 	for i in range(max_notes):
-		var sampler := Sampler.new()
-		sampler.samples = samples
-		sampler.env_attack = env_attack
-		sampler.env_sustain = env_sustain
-		sampler.env_release = env_release
-		sampler.volume_db = volume_db
-		sampler.bus = bus
-
+		var sampler := _build_sampler()
 		add_child(sampler)
 		samplers.append(sampler)
 
@@ -68,4 +73,19 @@ func chord_glide(note: String, octave: int = 4, duration: float = 0.1):
 		sampler.glide(note, octave, duration)
 
 func _can_glide(s: Sampler) -> bool:
-	return s.playing && !s.in_release && !(s.glissando != null && s.glissando.is_running())
+	return s.player.playing && !s.in_release && !(s.glissando != null && s.glissando.is_running())
+
+func _build_sampler() -> Sampler:
+	var sampler := Sampler.new()
+	sampler.samples = samples
+	sampler.env_attack = env_attack
+	sampler.env_sustain = env_sustain
+	sampler.env_release = env_release
+	sampler.volume_db = volume_db
+	sampler.bus = bus
+
+	if use_custom_player:
+		var sampler_player: Node = custom_player.duplicate()
+		sampler.add_child(sampler_player)
+
+	return sampler

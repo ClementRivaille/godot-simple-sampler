@@ -1,7 +1,7 @@
 extends Node2D
 class_name SpatialSpeaker
 
-@onready var sampler: Sampler = $Sampler
+@onready var sampler: SamplerInstrument = $Sampler
 
 var note_idx := 0
 var notes: Array[String] = ["C", "E", "G", "A"]

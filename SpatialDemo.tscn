@@ -1,9 +1,9 @@
 [gd_scene load_steps=9 format=3 uid="uid://byirdc5g1af6p"]
 
-[ext_resource type="Script" path="res://addons/SimpleSampler/sampler.gd" id="1_oc1je"]
 [ext_resource type="Script" path="res://demo/SpatialSpeaker.gd" id="1_ufvx1"]
 [ext_resource type="Script" path="res://addons/SimpleSampler/sample_resource.gd" id="2_s7481"]
 [ext_resource type="AudioStream" uid="uid://cfyktwfjlhl7x" path="res://samples/sawtooth_A440.ogg" id="3_4cdoy"]
+[ext_resource type="Script" path="res://addons/SimpleSampler/sampler_instrument.gd" id="3_jmyrs"]
 [ext_resource type="Texture2D" uid="uid://cluqqjhmblvya" path="res://demo/speaker.png" id="4_4gf7c"]
 [ext_resource type="Script" path="res://demo/SpatialListener.gd" id="5_k4o8p"]
 [ext_resource type="Texture2D" uid="uid://b2lupmwp88ypv" path="res://demo/godot.png" id="6_ss4dp"]
@@ -20,23 +20,23 @@ velocity = 5
 [node name="Speaker" type="Node2D" parent="."]
 script = ExtResource("1_ufvx1")
 
-[node name="Sampler" type="AudioStreamPlayer" parent="Speaker"]
-script = ExtResource("1_oc1je")
-samples = Array[ExtResource("2_s7481")]([SubResource("Resource_gm4tn")])
-env_attack = 0.01
-env_sustain = 0.02
-env_release = 0.6
-
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Speaker/Sampler"]
-max_distance = 600.0
-panning_strength = 1.2
-
 [node name="Sprite2D" type="Sprite2D" parent="Speaker"]
 texture = ExtResource("4_4gf7c")
 
 [node name="Timer" type="Timer" parent="Speaker"]
 wait_time = 0.2
 autostart = true
+
+[node name="Sampler" type="AudioStreamPlayer" parent="Speaker"]
+script = ExtResource("3_jmyrs")
+samples = Array[ExtResource("2_s7481")]([SubResource("Resource_gm4tn")])
+env_attack = 0.01
+env_sustain = 0.01
+env_release = 1.2
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Speaker/Sampler"]
+max_distance = 600.0
+panning_strength = 1.2
 
 [node name="Camera2D" type="Camera2D" parent="."]
 
@@ -49,7 +49,7 @@ current = true
 metadata/_edit_lock_ = true
 
 [node name="Sprite" type="Sprite2D" parent="Listener"]
-scale = Vector2(0.03, 0.03)
+scale = Vector2(0.15, 0.15)
 texture = ExtResource("6_ss4dp")
 metadata/_edit_lock_ = true
 
