@@ -2,19 +2,21 @@
 extends AudioStreamPlayer
 class_name Sampler
 
-## Audio instrument playing single notes
-##
-## For playing several simultaneous notes, use Multisampler instead
+## Audio instrument playing single notes [br][br]
+## For playing several simultaneous notes, use Multisampler instead. [br]
+## Can be used with a child AudioStreamPlayer / AudiostreamPlayer2D / AudiostreamPlayer3D. [br][br]
+## [url=https://github.com/ClementRivaille/godot-simple-sampler?tab=readme-ov-file#simple-sampler]Documentation[/url]
 
 ## List of audio samples from which to generate notes
 @export var samples: Array[NoteSample]
 
+
 @export_group("Envelop", "env_")
-## Attack in secondes
+## Attack in seconds
 @export var env_attack: float = -1.0
 ## Sustain in seconds
 @export var env_sustain: float = -1.0
-## Release in secondes
+## Release in seconds
 @export var env_release: float = -1.0
 
 var max_volume: float

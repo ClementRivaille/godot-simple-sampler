@@ -2,9 +2,9 @@
 extends Sampler
 class_name SamplerInstrument
 
-## Audio instrument using samples to play notes
-##
-## Virtual instrument that uses a list of sample sound to infer notes between and play them
+## Audio instrument using samples to play notes [br][br]
+## Can be used with a child AudioStreamPlayer / AudiostreamPlayer2D / AudiostreamPlayer3D. [br][br]
+## [url=https://github.com/ClementRivaille/godot-simple-sampler?tab=readme-ov-file#simple-sampler]Documentation[/url]
 
 ## Maximum of simultaneous notes allowed
 @export var max_notes: int = 4
