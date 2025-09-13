@@ -3,8 +3,7 @@ extends AudioStreamPlayer
 class_name Sampler
 
 ## Audio instrument playing single notes [br][br]
-## For playing several simultaneous notes, use Multisampler instead. [br]
-## Can be used with a child AudioStreamPlayer / AudiostreamPlayer2D / AudiostreamPlayer3D. [br][br]
+## For playing several simultaneous notes, use Multisampler instead. [br][br]
 ## [url=https://github.com/ClementRivaille/godot-simple-sampler?tab=readme-ov-file#simple-sampler]Documentation[/url]
 
 ## List of audio samples from which to generate notes
@@ -19,7 +18,7 @@ class_name Sampler
 ## Release in seconds
 @export var env_release: float = -1.0
 
-var max_volume: float
+@onready var max_volume := volume_db
 var tween: Tween
 var timer: Timer
 
@@ -31,9 +30,6 @@ var playing_sample: NoteSample
 var playing_note_value: int
 var glissando: Tween
 
-# AudioStreamPlayer / AudioStreamPlayer2D / AudioStreamPlayer3D
-var player
-
 func _ready():
 	# Calculate samples' values and sort them
 	var calculator: NoteValueCalculator = get_node("/root/NoteValue")
@@ -41,16 +37,6 @@ func _ready():
 		var sample: NoteSample = s
 		sample.initValue(calculator)
 	samples.sort_custom(func(a: NoteSample, b: NoteSample): return a.value < b.value)
-
-	# Use self as player by default, or custom child player
-	player = self
-	for child: Node in get_children():
-		if child is AudioStreamPlayer \
-			|| child is AudioStreamPlayer2D \
-			|| child is AudioStreamPlayer3D:
-			player = child
-			break
-	max_volume = player.volume_db
 
 	# Create sustain timer
 	timer = Timer.new()
@@ -94,23 +80,23 @@ func play_note(note: String, octave: int = 4, velocity : int = 5):
 
 	# Pick one of the close samples
 	playing_sample = closest_samples[randi()%closest_samples.size()]
-	player.stream = playing_sample.stream
+	stream = playing_sample.stream
 
 	# Set pitch relatively to sample
-	player.pitch_scale = pow(2, (note_val - playing_sample.value) / 12.0)
+	pitch_scale = pow(2, (note_val - playing_sample.value) / 12.0)
 
 	_reset_envelope()
 
 	if env_attack > 0:
-		player.volume_db = -50
+		volume_db = -50
 		tween = create_tween()
-		tween.tween_property(player, "volume_db", max_volume, env_attack
+		tween.tween_property(self, "volume_db", max_volume, env_attack
 			).set_trans(Tween.TRANS_SINE
 			).set_ease(Tween.EASE_OUT)
 		tween.tween_callback(_end_attack)
 		in_attack = true
 
-	player.play(0.0)
+	play(0.0)
 
 	# If sustain is set with no atack, plan a release
 	if (env_sustain > 0 && env_attack <= 0):
@@ -118,11 +104,11 @@ func play_note(note: String, octave: int = 4, velocity : int = 5):
 
 # Stop the note with a release
 func release():
-	if player.playing && !in_release:
+	if playing && !in_release:
 		if in_attack:
 			tween.kill()
 			in_attack = false
-			_end_sustain(player.volume_db)
+			_end_sustain(volume_db)
 		else:
 			_end_sustain()
 
@@ -130,13 +116,13 @@ func release():
 func glide(note: String, octave: int = 4, duration: float = 0.1):
 	if glissando != null && glissando.is_running():
 		glissando.kill()
-	if player.playing:
+	if playing:
 		var calculator: NoteValueCalculator = get_node("/root/NoteValue")
 		var note_val := calculator.get_note_value(note, octave)
 		playing_note_value = note_val
 		var new_pitch = pow(2, (note_val - playing_sample.value) / 12.0)
 		glissando = create_tween()
-		glissando.tween_property(player, "pitch_scale", new_pitch, duration
+		glissando.tween_property(self, "pitch_scale", new_pitch, duration
 			).set_trans(Tween.TRANS_SINE
 			).set_ease(Tween.EASE_IN_OUT)
 
@@ -146,14 +132,14 @@ func _end_attack():
 		timer.start()
 
 func _end_sustain(volume_from: float = max_volume):
-	if player.playing:
+	if playing:
 		if env_release <= 0:
-			player.stop()
+			stop()
 		else:
 			# Start release
-			player.volume_db = volume_from
+			volume_db = volume_from
 			tween = create_tween()
-			tween.tween_property(player, "volume_db",
+			tween.tween_property(self, "volume_db",
 				-50, env_release
 				).set_trans(Tween.TRANS_SINE
 				).set_ease(Tween.EASE_IN_OUT)
@@ -161,7 +147,7 @@ func _end_sustain(volume_from: float = max_volume):
 			in_release = true
 
 func _end_release():
-	player.stop()
+	stop()
 	if glissando != null && glissando.is_running():
 		glissando.kill()
 	in_release = false
@@ -181,11 +167,11 @@ func _reset_envelope():
 		in_release = false
 
 	# Stop sound
-	if player.playing:
-		player.stop()
+	if playing:
+		stop()
 
 	# Reset volume
 	if env_attack < 0:
-		player.volume_db = max_volume
+		volume_db = max_volume
 	else:
-		player.volume_db = -50
+		volume_db = -50
