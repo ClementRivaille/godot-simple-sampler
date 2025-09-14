@@ -3,7 +3,6 @@ extends Sampler
 class_name SamplerInstrument
 
 ## Audio instrument using samples to play notes [br][br]
-## Can be used with a child AudioStreamPlayer / AudiostreamPlayer2D / AudiostreamPlayer3D. [br][br]
 ## [url=https://github.com/ClementRivaille/godot-simple-sampler?tab=readme-ov-file#simple-sampler]Documentation[/url]
 
 ## Maximum of simultaneous notes allowed
@@ -17,13 +16,7 @@ func _ready():
 	# Create samplers
 	# warning-ignore:unused_variable
 	for i in range(max_notes):
-		var sampler := Sampler.new()
-		sampler.samples = samples
-		sampler.env_attack = env_attack
-		sampler.env_sustain = env_sustain
-		sampler.env_release = env_release
-		sampler.volume_db = volume_db
-		sampler.bus = bus
+		var sampler := _build_sampler()
 
 		add_child(sampler)
 		samplers.append(sampler)
@@ -69,3 +62,36 @@ func chord_glide(note: String, octave: int = 4, duration: float = 0.1):
 
 func _can_glide(s: Sampler) -> bool:
 	return s.playing && !s.in_release && !(s.glissando != null && s.glissando.is_running())
+
+func _build_sampler() -> Sampler:
+	var sampler := Sampler.new()
+	sampler.samples = samples
+	sampler.env_attack = env_attack
+	sampler.env_sustain = env_sustain
+	sampler.env_release = env_release
+	sampler.volume_db = volume_db
+	sampler.bus = bus
+	## COPY_SAMPLER_2D: _copy_player2D_properties(self, sampler)
+	## COPY_SAMPLER_3D: _copy_player3D_properties(self, sampler)
+
+	return sampler
+
+func _copy_player2D_properties(from: AudioStreamPlayer2D, to: AudioStreamPlayer2D):
+	to.max_distance = from.max_distance
+	to.attenuation = from.attenuation
+	to.panning_strength = from.panning_strength
+	to.area_mask = from.area_mask
+
+func _copy_player3D_properties(from: AudioStreamPlayer3D, to: AudioStreamPlayer3D):
+	to.max_distance = from.max_distance
+	to.panning_strength = from.panning_strength
+	to.area_mask = from.area_mask
+	to.attenuation_filter_cutoff_hz = from.attenuation_filter_cutoff_hz
+	to.attenuation_filter_db = from.attenuation_filter_db
+	to.attenuation_model = from.attenuation_model
+	to.doppler_tracking = from.doppler_tracking
+	to.emission_angle_degrees = from.emission_angle_degrees
+	to.emission_angle_enabled = from.emission_angle_enabled
+	to.emission_angle_filter_attenuation_db = from.emission_angle_filter_attenuation_db
+	to.max_db = from.max_db
+	to.unit_size = from.unit_size
