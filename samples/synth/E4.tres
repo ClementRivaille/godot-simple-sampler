@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="NoteSample" load_steps=3 format=3 uid="uid://4fky4fiaq5cv"]
 
-[ext_resource type="Script" path="res://addons/SimpleSampler/sample_resource.gd" id="2"]
+[ext_resource type="Script" uid="uid://dtpmtwvvk0ac7" path="res://addons/SimpleSampler/sample_resource.gd" id="2"]
 [ext_resource type="AudioStream" uid="uid://d2ul4xbuec4jg" path="res://samples/synth/E4.ogg" id="3"]
 
 [resource]
@@ -8,3 +8,4 @@ script = ExtResource("2")
 stream = ExtResource("3")
 tone = "E"
 octave = 3
+velocity = 5

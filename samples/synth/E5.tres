@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="NoteSample" load_steps=3 format=3 uid="uid://b17jir0nea6wb"]
 
-[ext_resource type="Script" path="res://addons/SimpleSampler/sample_resource.gd" id="2"]
+[ext_resource type="Script" uid="uid://dtpmtwvvk0ac7" path="res://addons/SimpleSampler/sample_resource.gd" id="2"]
 [ext_resource type="AudioStream" uid="uid://els62rsymc5c" path="res://samples/synth/E5.ogg" id="3"]
 
 [resource]

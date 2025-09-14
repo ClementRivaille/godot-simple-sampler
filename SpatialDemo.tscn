@@ -1,10 +1,10 @@
 [gd_scene load_steps=9 format=3 uid="uid://byirdc5g1af6p"]
 
-[ext_resource type="Script" path="res://demo/SpatialSpeaker.gd" id="1_ufvx1"]
-[ext_resource type="Script" path="res://addons/SimpleSampler/sampler_instrument_2D.gd" id="3_w4o7v"]
+[ext_resource type="Script" uid="uid://ega35jy2etxq" path="res://demo/SpatialSpeaker.gd" id="1_ufvx1"]
+[ext_resource type="Script" uid="uid://bcwt5giabpceq" path="res://addons/SimpleSampler/sampler_instrument_2D.gd" id="3_w4o7v"]
 [ext_resource type="Texture2D" uid="uid://cluqqjhmblvya" path="res://demo/speaker.png" id="4_4gf7c"]
-[ext_resource type="Script" path="res://addons/SimpleSampler/sample_resource.gd" id="4_bvrrj"]
-[ext_resource type="Script" path="res://demo/SpatialListener.gd" id="5_k4o8p"]
+[ext_resource type="Script" uid="uid://dtpmtwvvk0ac7" path="res://addons/SimpleSampler/sample_resource.gd" id="4_bvrrj"]
+[ext_resource type="Script" uid="uid://voakew4p1rva" path="res://demo/SpatialListener.gd" id="5_k4o8p"]
 [ext_resource type="AudioStream" uid="uid://cfyktwfjlhl7x" path="res://samples/sawtooth_A440.ogg" id="5_q3l2c"]
 [ext_resource type="Texture2D" uid="uid://b2lupmwp88ypv" path="res://demo/godot.png" id="6_ss4dp"]
 

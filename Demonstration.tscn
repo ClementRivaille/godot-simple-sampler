@@ -1,15 +1,15 @@
 [gd_scene load_steps=64 format=3 uid="uid://brsav6q3j2qr0"]
 
 [ext_resource type="Resource" uid="uid://or0rpm8mm2fx" path="res://samples/synth/G#4.tres" id="1"]
-[ext_resource type="Script" path="res://addons/SimpleSampler/sampler.gd" id="2"]
+[ext_resource type="Script" uid="uid://rq6s8cpuio4s" path="res://addons/SimpleSampler/sampler.gd" id="2"]
 [ext_resource type="Resource" uid="uid://b17jir0nea6wb" path="res://samples/synth/E5.tres" id="3"]
 [ext_resource type="Resource" uid="uid://4fky4fiaq5cv" path="res://samples/synth/E4.tres" id="4"]
-[ext_resource type="Resource" path="res://samples/synth/B4.tres" id="5"]
-[ext_resource type="Resource" path="res://samples/synth/C#5.tres" id="6"]
+[ext_resource type="Resource" uid="uid://d085rl7odvhas" path="res://samples/synth/B4.tres" id="5"]
+[ext_resource type="Resource" uid="uid://d4dskvptq8tnj" path="res://samples/synth/C#5.tres" id="6"]
 [ext_resource type="FontFile" uid="uid://dcjom54wtn1jo" path="res://demo/Oswald-Medium.ttf" id="8"]
-[ext_resource type="Script" path="res://addons/SimpleSampler/sampler_instrument.gd" id="8_k2wil"]
-[ext_resource type="Script" path="res://demo/Samplers.gd" id="9"]
-[ext_resource type="Script" path="res://addons/SimpleSampler/sample_resource.gd" id="10"]
+[ext_resource type="Script" uid="uid://2ag1petdt53" path="res://addons/SimpleSampler/sampler_instrument.gd" id="8_k2wil"]
+[ext_resource type="Script" uid="uid://dm4tv7q2ail8n" path="res://demo/Samplers.gd" id="9"]
+[ext_resource type="Script" uid="uid://dtpmtwvvk0ac7" path="res://addons/SimpleSampler/sample_resource.gd" id="10"]
 [ext_resource type="AudioStream" uid="uid://cfyktwfjlhl7x" path="res://samples/sawtooth_A440.ogg" id="11"]
 [ext_resource type="AudioStream" uid="uid://btgnr87ndkpe5" path="res://samples/guitar/m_ A4_1.wav" id="11_dycnb"]
 [ext_resource type="AudioStream" uid="uid://b5fcefr5ak1ry" path="res://samples/guitar/m_ A4_2.wav" id="12_8glvv"]
@@ -35,7 +35,7 @@
 [ext_resource type="AudioStream" uid="uid://bgltkjnq2uypk" path="res://samples/guitar/f_ D4_2.wav" id="32_76slq"]
 [ext_resource type="AudioStream" uid="uid://we8xdjmjb8iu" path="res://samples/guitar/f_ D4_3.wav" id="33_3ihw6"]
 [ext_resource type="AudioStream" uid="uid://dnmm0dnahn8tu" path="res://samples/guitar/f_ D4_4.wav" id="34_qxqr8"]
-[ext_resource type="Script" path="res://demo/VelocityMenu.gd" id="36_pbf0f"]
+[ext_resource type="Script" uid="uid://bt1av6n410ya5" path="res://demo/VelocityMenu.gd" id="36_pbf0f"]
 
 [sub_resource type="Resource" id="1"]
 script = ExtResource("10")
@@ -2793,6 +2793,7 @@ icon_alignment = 2
 item_count = 3
 popup/item_0/text = "Piano"
 popup/item_0/checkable = 2
+popup/item_0/id = 0
 popup/item_1/text = "Mezzo"
 popup/item_1/checkable = 2
 popup/item_1/checked = true
