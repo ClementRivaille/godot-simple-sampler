@@ -1,17 +1,16 @@
-[gd_scene load_steps=10 format=3 uid="uid://byirdc5g1af6p"]
+[gd_scene load_steps=9 format=3 uid="uid://byirdc5g1af6p"]
 
 [ext_resource type="Script" path="res://demo/SpatialSpeaker.gd" id="1_ufvx1"]
-[ext_resource type="Script" path="res://addons/SimpleSampler/sample_resource.gd" id="2_s7481"]
-[ext_resource type="AudioStream" uid="uid://cfyktwfjlhl7x" path="res://samples/sawtooth_A440.ogg" id="3_4cdoy"]
-[ext_resource type="Script" path="res://addons/SimpleSampler/sampler_instrument.gd" id="3_jmyrs"]
+[ext_resource type="Script" path="res://addons/SimpleSampler/sampler_instrument_2D.gd" id="3_w4o7v"]
 [ext_resource type="Texture2D" uid="uid://cluqqjhmblvya" path="res://demo/speaker.png" id="4_4gf7c"]
+[ext_resource type="Script" path="res://addons/SimpleSampler/sample_resource.gd" id="4_bvrrj"]
 [ext_resource type="Script" path="res://demo/SpatialListener.gd" id="5_k4o8p"]
-[ext_resource type="Script" path="res://addons/SimpleSampler/sampler.gd" id="6_pox2n"]
+[ext_resource type="AudioStream" uid="uid://cfyktwfjlhl7x" path="res://samples/sawtooth_A440.ogg" id="5_q3l2c"]
 [ext_resource type="Texture2D" uid="uid://b2lupmwp88ypv" path="res://demo/godot.png" id="6_ss4dp"]
 
-[sub_resource type="Resource" id="Resource_gm4tn"]
-script = ExtResource("2_s7481")
-stream = ExtResource("3_4cdoy")
+[sub_resource type="Resource" id="Resource_t3sa5"]
+script = ExtResource("4_bvrrj")
+stream = ExtResource("5_q3l2c")
 tone = "A"
 octave = 4
 velocity = 5
@@ -28,24 +27,14 @@ texture = ExtResource("4_4gf7c")
 wait_time = 0.2
 autostart = true
 
-[node name="_Sampler" type="AudioStreamPlayer" parent="Speaker"]
-script = ExtResource("3_jmyrs")
-samples = Array[ExtResource("2_s7481")]([SubResource("Resource_gm4tn")])
+[node name="Sampler2D" type="AudioStreamPlayer2D" parent="Speaker"]
+max_distance = 600.0
+panning_strength = 1.2
+script = ExtResource("3_w4o7v")
+samples = Array[ExtResource("4_bvrrj")]([SubResource("Resource_t3sa5")])
 env_attack = 0.01
 env_sustain = 0.01
 env_release = 1.2
-
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Speaker/_Sampler"]
-max_distance = 600.0
-panning_strength = 1.2
-
-[node name="Sampler" type="AudioStreamPlayer" parent="Speaker"]
-script = ExtResource("6_pox2n")
-samples = Array[ExtResource("2_s7481")]([SubResource("Resource_gm4tn")])
-
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Speaker/Sampler"]
-max_distance = 600.0
-panning_strength = 1.2
 
 [node name="Camera2D" type="Camera2D" parent="."]
 

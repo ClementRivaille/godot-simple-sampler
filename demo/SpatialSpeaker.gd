@@ -3,7 +3,7 @@ class_name SpatialSpeaker
 
 @export var moving := false
 
-@onready var sampler: Sampler = $Sampler
+@onready var sampler: Sampler2D = $Sampler2D
 
 var note_idx := 0
 var notes: Array[String] = ["C", "E", "G", "A"]
