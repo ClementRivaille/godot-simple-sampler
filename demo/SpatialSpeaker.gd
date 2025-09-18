@@ -13,11 +13,11 @@ func play_note():
 	sampler.play_note(note)
 	note_idx = (note_idx + 1) % notes.size()
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if !moving:
 		return
 
 	var cursor_pos := get_viewport().get_mouse_position()
-	var pos := Vector2(cursor_pos.x - get_viewport().size.x / 2,
-		cursor_pos.y - get_viewport().size.y / 2)
+	var pos := Vector2(cursor_pos.x - get_viewport_rect().size.x / 2,
+		cursor_pos.y - get_viewport_rect().size.y / 2)
 	set_global_position(pos)

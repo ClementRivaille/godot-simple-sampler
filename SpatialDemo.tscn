@@ -12,8 +12,6 @@
 script = ExtResource("4_bvrrj")
 stream = ExtResource("5_q3l2c")
 tone = "A"
-octave = 4
-velocity = 5
 
 [node name="SpatialDemo" type="Node2D"]
 
