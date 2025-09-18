@@ -12,6 +12,7 @@ _Simple Sampler_ is a Godot plugin for creating **musical instruments** in a gam
 Simpler Sampler is the ideal tool to create **interactive or generative music** or **dynamic sound effects**. It will let your player participate in the game's soundtrack!
 
 See it in action:
+
 - [Spring's Ballet](https://itooh.itch.io/springs-ballet): Move lily pads to play accordion. Every element in the game uses its own instrument!
 - [Colors of the universe](https://itooh.itch.io/colors-of-the-universe): Dive into a maze made of generative music
 - [The Analog Ensemble of Singing Kartoffeln](https://itooh.itch.io/analog-kartoffeln): Conduct a choir to sing your own melodies
@@ -50,7 +51,7 @@ You must do this for every samples. The order you put them in the array doesn't 
 
 ### Playing notes
 
-Once you have done that, your sampler is ready to use! To play a note, **just call the function `play_note`** with the note name (in uppercase) and the octave.
+Once you have configured the samples, your sampler is ready to use! To play a note, **just call the function `play_note`** with the note name (in uppercase) and the octave.
 
 ```
 sampler.play_note("C", 4)
@@ -58,7 +59,7 @@ sampler.play_note("C", 4)
 
 And that's it!
 
-If your sample is played on a loop, and you want to stop it, call the `release` method:
+If your sample is played on a loop and you want to stop it, call the `release` method:
 
 ```
 sampler.release()
@@ -83,17 +84,9 @@ sampler.play_note("A#")
 
 Calling `release` will release every currently playing note.
 
-### AudioStreamPlayer configuration and Spatial sound
+### Positional sound
 
-Samplers are based on _AudioStreamPlayers_. Which means that you can set their volume or connect them to an audio bus just like any AudioStreamPlayer.
-
-:warning: Don't edit their volume or runtime though, as it is used by the sampler's envelop. Use a bus instead for these kind of dynamic effects.
-
-**You can also use a custom AudioStreamPlayer** by adding it as a child to the Sampler or SamplerInstrument. The Sampler will then use the child player to play its sounds. This also works with **AudioStreamPlayer2D** and **AudioStreamPlayer3D**, allowing you to spatialize the sound of your instrument.
-
-<img width="219" height="66" alt="image" src="https://github.com/user-attachments/assets/5feb4d6e-67ee-4fed-aff5-323e0ac12521" />
-
-If you use a custom player this way, the AudioStreamPlayer properties of the Sampler (such as volume_db or bus) will be ignored. Configure the player inside instead. Only the first child player will be used.
+To create a sample that emits positional sound in a 2D or 3D space, use the nodes **SamplerInstrument2D** or **SamplerInstrument3D**. These nodes inherit respectively from StreamPlayer2D and StrealPlayer3D. They work just like those, and can be configured the same way to customize distance, panning, or area masks. The methods are then the same as _SampleInstrument_.
 
 You can see a demo within this repo in _SpatialDemo.tscn_.
 
