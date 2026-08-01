@@ -20,3 +20,5 @@ mono_crash.*.json
 .directory
 .DS_Store
 *~
+
+release
