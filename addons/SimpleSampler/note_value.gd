@@ -1,7 +1,7 @@
 extends Node
 class_name NoteValueCalculator
 
-var note_values := {
+var note_values :Dictionary[String, int] = {
 	"C": 0,
 	"C#": 1,
 	"Db": 1,
@@ -35,7 +35,7 @@ func get_note_value(tone: String, octave: int = 4) -> int:
 
 # Return the name of a note from its value
 func get_note_name(value: int) -> String:
-	var notes : Array[String] = note_values.keys()
+	var notes: Array[String] = note_values.keys()
 	var values := note_values.values()
 	var index: int = values.find(value % 12)
 	return notes[index]
